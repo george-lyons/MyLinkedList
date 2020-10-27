@@ -13,6 +13,8 @@ import java.util.NoSuchElementException;
  * for purposes of this task - writing linkedlist, we will store an int on each node, would be generic any object
  * <p>
  * we need to be able to loop through and get a Node at any index - method for this
+ *
+ * Remove from HEAD, and add to TAIL by default
  */
 public class LinkedListGeorge {
 
@@ -99,7 +101,7 @@ public class LinkedListGeorge {
     }
 
 
-    //O(1) to add tail of linkedlist
+    //O(1) to add TAIL of linkedlist by default
     public boolean add(Integer data) {
         //add to end of list
         Node newNode = new Node(data);
@@ -158,6 +160,9 @@ public class LinkedListGeorge {
         return nodeToRemove.data;
     }
 
+    /*
+    remove HEAD LL always default
+     */
     public int remove() {
         //get and remove first element of list
         return removeFirst();
@@ -165,27 +170,49 @@ public class LinkedListGeorge {
 
     //this is O(N) to get Node in middle
     //can improve by going from tail or head based on where it is - which half of the list - rather than searching across
-    private Node getNode(int index) {
-        //assert index - done in get
-        Node x = head;
-        if (index < size - 1 && index > 0) {
-            //start 1 to index
-            for (int i = 1; i <= index; i++) {
+//    private Node getNode(int index) {
+//        //assert index - done in get
+//        Node x = head;
+//        if (index < size - 1 && index > 0) {
+//            //start 1 to index
+//            for (int i = 1; i <= index; i++) {
+//                x = x.next;
+//            }
+//            return x;
+//        } else if (index == 0) {
+//            return head;
+//        } else if (index == size - 1) {
+//            return tail;
+//        }
+//        throw new NoSuchElementException();
+//    }
+//
+
+    /*
+     if rhs iterate from tail, if lhs iterate from head -- assume index okay
+     this is O(N) to get Node in middle - but faster as seaerch from either side
+     */
+    public Node getNode(int index) {
+        assert index < size && index >=0;
+
+        //or divide 2
+        int middle = (size / 2);
+        if(index <= middle) {
+            //start left head
+            Node x = head;
+            for (int i = 0; i < index; i++) {
                 x = x.next;
             }
             return x;
-        } else if (index == 0) {
-            return head;
-        } else if (index == size - 1) {
-            return tail;
+        } else {
+            //start right tail
+            Node x = tail;
+            for(int i = size -1; i > index; i--) {
+                x = x.previous;
+            }
+            return x;
         }
-        throw new NoSuchElementException();
-    }
 
-
-    private Node getNodeFromEitherSide(int index) {
-
-        throw new NoSuchElementException();
     }
 
 
@@ -217,6 +244,7 @@ public class LinkedListGeorge {
             }
             System.out.print("|");
         }
+        System.out.println();
     }
 
 

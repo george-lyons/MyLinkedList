@@ -126,5 +126,29 @@ public class LinkedListGeorgeTest {
         Assert.assertEquals(4, linkedListGeorge.tail.data, 0.0001);
     }
 
+    @Test
+    public void getNodeFromEitherSide() {
+        LinkedListGeorge linkedListGeorge = new LinkedListGeorge();
+
+        for (int i = 0; i < 200; i++) {
+            linkedListGeorge.add(i);
+        }
+
+        linkedListGeorge.prettyPrintConsole();
+
+        //head
+        System.out.println(linkedListGeorge.getNode(0).data);
+
+        System.out.println(linkedListGeorge.getNode(150).data);
+
+        System.out.println(linkedListGeorge.getNode(50).data);
+
+        //tail
+        System.out.println(linkedListGeorge.getNode(199).data);
+
+        Assert.assertEquals(linkedListGeorge.tail.data, linkedListGeorge.getNode(199).data);
+        Assert.assertEquals(linkedListGeorge.head.data, linkedListGeorge.getNode(0).data);
+    }
+
 
 }
