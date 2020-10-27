@@ -1,4 +1,4 @@
-package ll;
+package mine;
 
 import org.junit.Assert;
 import org.junit.Test;

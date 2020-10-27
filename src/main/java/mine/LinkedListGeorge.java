@@ -1,4 +1,4 @@
-package ll;
+package mine;
 
 import lombok.Data;
 
