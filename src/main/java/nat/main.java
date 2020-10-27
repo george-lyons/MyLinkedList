@@ -16,6 +16,7 @@ public class main {
         list.add("bfll");
         list.add("well");
 
+        
         Iterator<String> iterator=list.iterator();
 
         //Linked list is a doubly linked list
